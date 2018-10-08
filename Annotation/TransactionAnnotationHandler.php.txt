@@ -8,12 +8,10 @@ use Doctrine\Common\Annotations\AnnotationException;
 use Exception;
 use ReflectionClass;
 use ReflectionException;
+use Doctrine\Common\Annotations\Reader;
+use Transaction;
 
-/**
- * @Annotation
- * @Target({"METHOD", "CLASS"})
- */
-class Transaction
+class TransactionAnnotationHandler
 {
     /**
      * Annotations reader.
@@ -21,8 +19,14 @@ class Transaction
      */
     private $reader;
 	
-    public function __construct(array $options = [])
+    public function __construct(Reader $reader)
     {
-
+        $this->reader = $reader;
     }
+	
+	public function getAnnotation()
+	{
+        $reflectionMethod = new ReflectionMethod('Transaction', 'getProperty');
+        $methodAnnotations = $annotationReader->getMethodAnnotations($reflectionMethod);
+	}
 }
