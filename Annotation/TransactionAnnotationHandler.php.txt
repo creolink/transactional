@@ -24,9 +24,17 @@ class TransactionAnnotationHandler
         $this->reader = $reader;
     }
 	
-	public function getAnnotation()
+	public function getAnnotation(ReflectionMethod $method)
 	{
-        $reflectionMethod = new ReflectionMethod('Transaction', 'getProperty');
-        $methodAnnotations = $annotationReader->getMethodAnnotations($reflectionMethod);
+        //$reflectionMethod = new ReflectionMethod('Transaction', 'getProperty');
+        //$methodAnnotations = $annotationReader->getMethodAnnotations($reflectionMethod);
+		
+        $annotation = $this->reader->getMethodAnnotation($method, Transaction::class);
+        //if ($annotation === null) {
+        //    // If there is no method-level annotation, gets class-level annotation.
+        //    $annotation = $this->reader->getClassAnnotation($method->getDeclaringClass(), Transactional::class);
+        //}
+		
+        return $annotation;
 	}
 }
