@@ -1,0 +1,28 @@
+<?php
+
+namespace Annotation;
+
+use Doctrine\Common\Annotations\Annotation\Attribute;
+use Doctrine\Common\Annotations\Annotation\Attributes;
+use Doctrine\Common\Annotations\AnnotationException;
+use Exception;
+use ReflectionClass;
+use ReflectionException;
+
+/**
+ * @Annotation
+ * @Target({"METHOD", "CLASS"})
+ */
+class Transaction
+{
+    /**
+     * Annotations reader.
+     * @var Reader
+     */
+    private $reader;
+	
+    public function __construct(array $options = [])
+    {
+
+    }
+}
